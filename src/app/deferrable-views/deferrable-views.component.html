@@ -1,0 +1,27 @@
+<h2 #trigger>deferrable-views works!</h2>
+
+<!--
+    on pode ser aninhado, a condição de exibição é de acordo com a que validar primeiro
+    idle, 
+    timer(5s), 
+    viewport, 
+    interaction() por padrao é o click no proprio component, 
+    hover, 
+    immediate ?, 
+    prefetch ? https://www.udemy.com/course/curso-de-angular/learn/lecture/41056878#overview
+-->
+@defer(on idle) {
+<app-new></app-new>
+} @placeholder(minimum 5s) {
+<p>Mostrar antes de carregar algo.</p>
+} @loading() {
+<p>Loading... qaundo o component esta sendo carregado</p>
+} @error {
+<p>Loading failed.</p>
+<p>Internet caiu</p>
+}
+
+<button (click)="isTrue = true">Exibir</button>
+@defer(when loadingData$ | async) {
+<p>Data carregada</p>
+}

@@ -1,0 +1,48 @@
+<!-- text interpolation -->
+<p>{{title}}</p>
+
+<!-- property binding -->
+<button [disabled]="buttonDisabled">Clique</button>
+
+<!-- Attribute binding -->
+<p [attr.aria-label]="aria" [attr.title]="title">{{title}}</p>
+
+<!-- Class binding -->
+<p [class.background-red]="true">Texto vermelho</p>
+
+<!-- Style binding -->
+<p [style.text-decoration]="'underline'">Texto decorado</p>
+
+<!-- 
+  Event binding 
+  (TargetEventname)="TemplateStatement"
+ -->
+´
+<p>Valor: {{valor}}</p>
+<button (click)="soma()">Somar</button>
+
+<input (keydown.shift.t)="onKeyDown($event)">
+
+<div style="background-color: red; width: 300px; height: 300px;" (mousemove)="onMouseMove($event)"></div>
+
+
+<!-- Two-way-binding -->
+<input [(ngModel)]="valor2">
+<p>{{valor2}}</p>
+
+
+<h2>Template</h2>
+<h3>Diretivas de atribuitos</h3>
+<div [ngClass]="{'background-red': valor === 2 ? true : false}">Classes condicionais</div>
+
+<div [ngStyle]="{
+  color: 'red',
+  background: 'blue'
+}">Estilo dinamico</div>
+
+<h2 #h2>Template Variables</h2>
+{{h2}}
+<input #name value="Eliane Alves">
+<p>{{name.value}}</p>
+
+<app-new/>

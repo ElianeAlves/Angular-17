@@ -1,0 +1,98 @@
+<!-- AntigoF Structure directives-->
+<ng-container *ngFor="let item of frutas">
+  <div [ngStyle]="{
+    display: 'flex',
+    gap: '4px'
+  }">
+    <ng-container *ngIf="item.quantidade == 1">
+      <p>Fruta: {{item.nome}}</p>
+      <p>Quantidade: {{item.quantidade}}</p>
+    </ng-container>
+  </div>
+</ng-container>
+
+<!-- Novo Control Flow -->
+@for(item of verduras; track item.nome) {
+<div [ngStyle]="{
+  display: 'flex',
+  gap: '4px'
+}">
+  @if(item.nome === "Alface"){
+  <p>Verdura: {{item.nome}}</p>
+  <p>Quantidade: {{item.quantidade}}</p>
+  }
+</div>
+} @empty {
+<p>Nnehuma fruta encontrada.</p>
+}
+
+@if(valor === 1) {
+<p>Valor é 1</p>
+} @else if (valor === 2) {
+<p>Valor é 2</p>
+} @else {
+<p>Valor é outro</p>
+}
+
+@if(data$ | async; as data) {
+<ul>
+  @for(item of data; track item) {
+  <li>{{item}}</li>
+  }
+</ul>
+}
+
+<ng-container *ngIf="data$ |async as data; else loading">
+  <ul>
+    <ng-container *ngFor="let item of data; trackBy: trackByFn">
+      <li>{{item}}</li>
+    </ng-container>
+  </ul>
+</ng-container>
+<ng-template #loading>
+  <p>Carregando...</p>
+</ng-template>
+
+@for(
+item of itens; track item;
+let i = $index;
+let c = $count;
+let f = $first;
+let l = $last;
+let e = $even;
+let o = $odd;
+) {
+<p>{{item.name}}</p>
+<p>index = {{i}}</p>
+<p>count = {{c}}</p>
+<p>first = {{f}}</p>
+<p>last = {{l}}</p>
+<p>even = {{e}}</p>
+<p>odd = {{o}}</p>
+}
+
+<input #name type="text">
+<button (click)="addNewName(name.value)">Adicionar nome</button>
+
+<!-- Switch Novo -->
+
+@switch (switchCondition) {
+  @case ('A') {
+    <p>A</p>
+  }
+
+  @case ('B') {
+    <p>B</p>
+  }
+
+  @default {
+    <p>Nenhuma opção encontrada</p>
+  }
+}
+
+<!-- Switch antigo -->
+
+<ng-container [ngSwitch]="switchCondition">
+  <ng-container *ngSwitchCase="'A'">Antigo a</ng-container>
+  <ng-container *ngSwitchDefault>Default antigo</ng-container>
+</ng-container>
